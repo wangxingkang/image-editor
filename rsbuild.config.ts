@@ -3,6 +3,7 @@ import { pluginModuleFederation } from '@module-federation/rsbuild-plugin';
 import { defineConfig } from '@rsbuild/core';
 import { pluginReact } from '@rsbuild/plugin-react';
 import { RsdoctorRspackPlugin } from '@rsdoctor/rspack-plugin';
+import tailwindcss from '@tailwindcss/postcss';
 import { TanStackRouterRspack } from '@tanstack/router-plugin/rspack';
 
 export default defineConfig({
@@ -34,6 +35,13 @@ export default defineConfig({
           autoCodeSplitting: true,
         }),
       ],
+    },
+    postcss: {
+      postcssOptions: (context) => {
+        return context.resourcePath.endsWith('.css')
+          ? { plugins: [tailwindcss] }
+          : {};
+      },
     },
   },
 });
