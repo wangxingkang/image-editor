@@ -30,7 +30,6 @@
   "dependencies": {
     "@leafer-in/editor": "^1.5.1",
     "@leafer-in/scroll": "^1.5.1",
-    "@module-federation/bridge-react": "^0.10.0",
     "@module-federation/enhanced": "^0.10.0",
     "@radix-ui/react-slot": "^1.1.2",
     "@rcuse/core": "^0.25.0",
