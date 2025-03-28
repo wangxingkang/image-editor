@@ -1,0 +1,85 @@
+{
+  "name": "image-editor",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "packageManager": "pnpm@10.6.2",
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=10.0.0"
+  },
+  "scripts": {
+    "start": "rsbuild dev --open",
+    "build": "rsbuild build",
+    "deploy": "pnpm build && import-meta-env -x .env.example -p dist/index.html",
+    "check": "biome check --write",
+    "format": "biome format --write",
+    "preview": "rsbuild preview",
+    "start:rsdoctor": "cross-env RSDOCTOR=true rsbuild dev",
+    "build:rsdoctor": "cross-env RSDOCTOR=true rsbuild build",
+    "test": "pnpm test:unit && pnpm test:e2e",
+    "test:e2e": "playwright test",
+    "test:unit": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "docs:build": "rspress build",
+    "docs:start": "rspress dev",
+    "docs:preview": "rspress preview",
+    "prepare": "simple-git-hooks",
+    "preinstall": "npx only-allow pnpm"
+  },
+  "dependencies": {
+    "@module-federation/bridge-react": "^0.10.0",
+    "@module-federation/enhanced": "^0.10.0",
+    "@rcuse/core": "^0.25.0",
+    "@tanstack/react-query": "^5.67.3",
+    "@tanstack/react-router": "^1.114.17",
+    "clsx": "^2.1.1",
+    "es-toolkit": "^1.33.0",
+    "nanoid": "^5.1.5",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "zustand": "^5.0.3"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^4.10.1",
+    "@biomejs/biome": "^1.9.4",
+    "@commitlint/cli": "^19.8.0",
+    "@commitlint/config-conventional": "^19.8.0",
+    "@eslint-react/eslint-plugin": "^1.33.0",
+    "@import-meta-env/cli": "^0.7.3",
+    "@module-federation/rsbuild-plugin": "^0.10.0",
+    "@playwright/test": "^1.51.0",
+    "@rsbuild/core": "^1.2.16",
+    "@rsbuild/plugin-react": "^1.1.1",
+    "@rsdoctor/rspack-plugin": "^0.4.13",
+    "@rspress/plugin-preview": "^1.43.4",
+    "@tanstack/eslint-plugin-query": "^5.67.2",
+    "@tanstack/router-devtools": "^1.114.18",
+    "@tanstack/router-plugin": "^1.114.17",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@types/react": "^18.3.18",
+    "@types/react-dom": "^18.3.5",
+    "cross-env": "^7.0.3",
+    "eslint": "^9.22.0",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.19",
+    "jsdom": "^26.0.0",
+    "lint-staged": "^15.5.0",
+    "playwright": "^1.51.0",
+    "rspress": "^1.43.4",
+    "simple-git-hooks": "^2.11.1",
+    "typescript": "^5.8.2",
+    "vite-tsconfig-paths": "^5.1.4",
+    "vitest": "^3.0.8"
+  },
+  "simple-git-hooks": {
+    "commit-msg": "npx --no -- commitlint --edit $1",
+    "pre-commit": "npx lint-staged",
+    "preserveUnused": [
+      "commit-msg"
+    ]
+  },
+  "lint-staged": {
+    "*": "eslint --fix"
+  }
+}
